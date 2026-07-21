@@ -32,10 +32,14 @@ const router = new Router({
       }
     },
     {
-      path: '/main',
+      path: '/',
       name: 'Main',
       component: () => import('@/views/Layout/Layout'),
       children: rlt
+    },
+    {
+      path: '/main',
+      redirect: '/home'
     },
     {
       path: '*',

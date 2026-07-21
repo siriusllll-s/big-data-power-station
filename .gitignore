@@ -1,8 +1,12 @@
 **/target/
 **/node_modules/
+**/dist/
 **/.idea/
 **/*.iml
 **/.DS_Store
 **/*.log
 **/opencode.db*
 **/.launch_passwd
+deploy/cloud/photovoltaic-information.jar
+deploy/cloud/frontend-dist/
+deploy/cloud/init.sql
