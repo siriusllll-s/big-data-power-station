@@ -1,4 +1,4 @@
-# photovoltaic-framework
+# 光伏项目框架
 
 光伏大数据项目框架（桌面副本）
 

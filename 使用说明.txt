@@ -1,0 +1,16 @@
+桌面唯一项目目录：/root/Desktop/光伏项目框架
+
+内容：
+- photovoltaic/  后端
+- solarweb/      前端
+- demo/          演示
+- big-data-notes/ 说明
+
+Git：
+  cd /root/Desktop/光伏项目框架
+  git status
+  git log --oneline -3
+
+系统安装路径（对照）：
+  /opt/module/photovoltaic
+  /home/webspace/solarweb
