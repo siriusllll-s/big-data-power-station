@@ -193,6 +193,7 @@ export default {
       }
     },
     persistLogin (data) {
+      localStorage.setItem('Authorization', data.resultValue.token || ('mock-token-' + Date.now()))
       localStorage.setItem('userName', data.resultValue.name)
       localStorage.setItem('userId', data.resultValue.id)
       localStorage.setItem('userMenu', JSON.stringify(data.resultValue.menuList || []))
