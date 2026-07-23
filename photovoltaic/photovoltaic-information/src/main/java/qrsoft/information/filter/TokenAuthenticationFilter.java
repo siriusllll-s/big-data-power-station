@@ -39,6 +39,7 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
 		String path = httpRequest.getRequestURI();
 		if ("/login".equals(path) || path.endsWith("/login")
 				|| "/register".equals(path) || path.endsWith("/register")
+				|| path.startsWith("/screen")
 				|| "OPTIONS".equalsIgnoreCase(httpRequest.getMethod())) {
 			filterChain.doFilter(request, response);
 			return;

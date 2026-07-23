@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.authorizeRequests()
-				.antMatchers("/login", "/register").permitAll()
+				.antMatchers("/login", "/register", "/screen/**").permitAll()
 				.anyRequest().authenticated();
 		http.headers().cacheControl();
 		http.addFilterBefore(new TokenLoginFilter("/login", authenticationManager(), redisTemplate, authMapper), UsernamePasswordAuthenticationFilter.class)
