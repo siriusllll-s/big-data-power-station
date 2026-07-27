@@ -13,6 +13,9 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
 	@Select("SELECT * FROM sys_user WHERE name = #{name} AND del_flag = 0 LIMIT 1")
 	SysUser getByName(@Param("name") String name);
 
+	@Select("select id,no,name,true_name,phone,e_mail from sys_user where id = #{id}")
+	SysUser getSimpleById(Integer id);
+
 	@Update("UPDATE sys_user SET password = #{password} WHERE id = #{id}")
 	int updatePassword(@Param("id") Integer id, @Param("password") String password);
 

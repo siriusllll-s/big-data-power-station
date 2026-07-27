@@ -20,3 +20,22 @@ export function formatDate (date, fmt) {
   }
   return fmt
 }
+
+export function getCurrentDate () {
+  return formatDate(new Date(), 'yyyy-MM-dd')
+}
+
+export function getCurrentMonthFirstDay () {
+  const d = new Date()
+  d.setDate(1)
+  return formatDate(d, 'yyyy-MM-dd')
+}
+
+/** 起止间隔是否大于约一个月（按天差 > 31） */
+export function compareGTOneMonth (start, end) {
+  if (!start || !end) return false
+  const s = new Date(String(start).replace(/-/g, '/'))
+  const e = new Date(String(end).replace(/-/g, '/'))
+  const diff = (e.getTime() - s.getTime()) / (24 * 3600 * 1000)
+  return diff > 31
+}

@@ -1,16 +1,45 @@
-桌面唯一项目目录：/root/Desktop/光伏项目框架
+光伏大数据项目 — 使用说明（速查）
 
-内容：
-- photovoltaic/  后端
-- solarweb/      前端
-- demo/          演示
-- big-data-notes/ 说明
+【工程位置】
+  桌面 Git：/root/Desktop/光伏项目框架
+  后端安装：/opt/module/photovoltaic
+  前端安装：/home/webspace/solarweb
+  运行 jar：/opt/module/photovoltaic/information/photovoltaic-information-0.0.1-SNAPSHOT.jar
 
-Git：
-  cd /root/Desktop/光伏项目框架
-  git status
-  git log --oneline -3
+【目录】
+  photovoltaic/   后端（common / datagenerate / information / spark / sparkrdd）
+  solarweb/       前端 Vue2
+  demo/           演示
+  deploy/         部署
+  big-data-notes/ 说明
+  docs/PROGRESS.md 功能进度
 
-系统安装路径（对照）：
-  /opt/module/photovoltaic
-  /home/webspace/solarweb
+【常用命令】
+  # 构建 information
+  cd /root/Desktop/光伏项目框架/photovoltaic
+  mvn -DskipTests clean package -pl photovoltaic-common,photovoltaic-information -am
+
+  # 启动后端（master）
+  cd /opt/module/photovoltaic/information
+  nohup java -jar photovoltaic-information-0.0.1-SNAPSHOT.jar >> run.log 2>&1 &
+
+  # 启动前端
+  cd /home/webspace/solarweb && npm run serve   # :8080
+
+【接口】
+  POST http://master:8113/screen/ammeter          电表读数
+  GET  http://master:8113/screen/stationMonthPower 本月发电量/效率
+
+【依赖服务】
+  MySQL slave2:3306  root/123456  库 photovoltaic
+  Redis slave1:6379  123456
+  ES    master:9200
+  HBase master（表 AmmeterInfo 等）
+
+【节点】
+  master 172.18.4.59 | slave1 172.18.4.144 | slave2 172.18.4.70
+  client1 172.18.4.236 | client2 172.18.4.52 | client3 172.18.4.80
+
+【同步】
+  源码/jar/Home 前端已同步到 client1/2/3（2026-07-27）
+  详细见 README.md
