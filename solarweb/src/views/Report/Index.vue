@@ -1,10 +1,10 @@
 <template>
-  <module-scaffold module-path="/report" />
+  <div class="report-index">
+    <router-view />
+  </div>
 </template>
 <script>
-import ModuleScaffold from @/views/common/ModuleScaffold
 export default {
-  name: ,
-  components: { ModuleScaffold }
+  name: 'ReportIndex'
 }
 </script>

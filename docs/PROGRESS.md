@@ -17,6 +17,16 @@
 
 ## 已完成
 
+### 报表管理 / 运行日报（本迭代）
+
+- 表：`power_data_report`（`docs/sql/power_data_report.sql`）
+- 定时任务：`PowerDataReportTask` 每日 00:10 生成昨日；每小时刷新今日；启动补近 30 天
+- 数据源：`k_wh_station` + `weather` → 汇总 kwh/radiation/powerRatio/weather
+- 接口：`POST /powerDataReport/pageByParam`、`GET /detail/{id}`、`POST /update`、`POST /generate`
+- 前端：`views/Report/DayReport.vue` + `api/Report/report.js` + 路由 `/report/dayReport`
+- 安全：`/powerDataReport/**` 实验放行
+
+
 ### 电站管理（本迭代补齐）
 
 - 电站详情/编辑/图片：`StationController` + `StationServiceImpl` + `Station.vue` / `EditStation` / `UploadImage`

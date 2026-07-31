@@ -47,3 +47,11 @@
 【节点】
   master 172.18.4.59 | slave1 172.18.4.144 | slave2 172.18.4.70
   client1 172.18.4.236 | client2 172.18.4.52 | client3 172.18.4.80
+
+【运行日报】
+  建表：mysql ... < docs/sql/power_data_report.sql
+  页面：/report/dayReport
+  POST /powerDataReport/pageByParam
+  GET  /powerDataReport/detail/{id}
+  POST /powerDataReport/update
+  定时：每天 00:10 生成昨日；启动补近 30 天

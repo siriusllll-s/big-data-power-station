@@ -1,8 +1,10 @@
 export default {
-  router: [{
-    path: ,
-    component: resolve => require([@/views/], resolve),
-    name: ,
-    meta: { title:  }
-  }]
+  router: [
+    {
+      path: '/report/dayReport',
+      component: resolve => require(['@/views/Report/DayReport'], resolve),
+      name: 'dayReport',
+      meta: { title: '电站运行日报' }
+    }
+  ]
 }

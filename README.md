@@ -60,6 +60,18 @@ datagenerate → logs/*.log → Flume → Kafka
 mysql -h slave2 -uroot -p123456 photovoltaic < docs/sql/station_management.sql
 ```
 
+## 报表管理（运行日报）
+
+| 功能 | 说明 |
+|------|------|
+| 定时生成 | `PowerDataReportTask`：每日汇总 `k_wh_station`/`weather` 写入 `power_data_report` |
+| 页面 | `/report/dayReport` 日期筛选、分页、编辑天气/总结、查看详情 |
+| 建表 | `docs/sql/power_data_report.sql` |
+
+```bash
+mysql -h slave2 -uroot -p123456 photovoltaic < docs/sql/power_data_report.sql
+```
+
 ## 大屏接口（/screen）
 
 | 方法 | 路径 | 说明 |

@@ -193,18 +193,20 @@ export const modules = [
   },
   {
     id: 10,
-    name: "报表中心",
-    path: "/report",
+    name: "运行日报",
+    path: "/report/dayReport",
     icon: "el-icon-document",
     group: "报表",
-    component: "Report/Index",
+    component: "Report/DayReport",
     routerFile: "report.js",
-    status: "todo",
-    owner: "前端-C",
-    desc: "日报/月报导出",
+    status: "ready",
+    owner: "前端-C / 后端-A",
+    desc: "定时任务生成日报，分页查询/编辑/查看",
     apis: [
-      { method: "GET", url: "/api/report/daily", desc: "日报" },
-      { method: "GET", url: "/api/report/export", desc: "导出" }
+      { method: "POST", url: "/api/powerDataReport/pageByParam", desc: "日报分页" },
+      { method: "GET", url: "/api/powerDataReport/detail/{id}", desc: "日报详情" },
+      { method: "POST", url: "/api/powerDataReport/update", desc: "日报编辑" },
+      { method: "POST", url: "/api/powerDataReport/generate", desc: "手动生成" }
     ]
   },
   {
