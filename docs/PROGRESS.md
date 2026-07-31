@@ -25,6 +25,7 @@
 - 接口：`POST /powerDataReport/pageByParam`、`GET /detail/{id}`、`POST /update`、`POST /generate`
 - 前端：`views/Report/DayReport.vue` + `api/Report/report.js` + 路由 `/report/dayReport`
 - 安全：`/powerDataReport/**` 实验放行
+- MinIO 封装：`IMinioService` + `MinioServiceImpl`，`MinioController` 委托调用
 
 
 ### 电站管理（本迭代补齐）

@@ -13,7 +13,7 @@
         ></el-date-picker>
       </el-form-item>
       <el-form-item class="fl_r">
-        <el-button type="primary" @click="search" icon="el-icon-search">
+        <el-button type="primary" @click="getDataList(0)" icon="el-icon-search">
           查询
         </el-button>
       </el-form-item>
@@ -21,12 +21,12 @@
 
     <el-table v-loading="loading" :data="dataList" border stripe>
       <el-table-column type="index" label="#" width="50"></el-table-column>
-      <el-table-column prop="reportDate" label="日报日期" min-width="110"></el-table-column>
-      <el-table-column prop="weather" label="天气" min-width="80"></el-table-column>
-      <el-table-column prop="kwh" label="当日发电量(KWh)" min-width="130"></el-table-column>
-      <el-table-column prop="radiation" label="当日辐照量(kWh/㎡)" min-width="140"></el-table-column>
-      <el-table-column prop="powerRatio" label="发电效率(%)" min-width="110"></el-table-column>
-      <el-table-column label="操作" align="center" width="140" fixed="right">
+      <el-table-column prop="reportDate" label="日报日期"></el-table-column>
+      <el-table-column prop="weather" label="天气"></el-table-column>
+      <el-table-column prop="kwh" label="当日发电量(KWh)"></el-table-column>
+      <el-table-column prop="radiation" label="当日辐照量(kWh/㎡)"></el-table-column>
+      <el-table-column prop="powerRatio" label="发电效率(%)"></el-table-column>
+      <el-table-column prop="lossDescription" label="操作" align="center" width="140">
         <template slot-scope="scope">
           <el-button type="text" size="small" @click="edit(scope.row.id)">编辑</el-button>
           <el-divider direction="vertical"></el-divider>
@@ -95,12 +95,24 @@
       :close-on-press-escape="false"
     >
       <el-form label-width="28%" :model="editForm">
-        <el-form-item label="日报日期：">{{ editForm.reportDate }}</el-form-item>
-        <el-form-item label="天气：">{{ editForm.weather }}</el-form-item>
-        <el-form-item label="当日发电量：">{{ editForm.kwh }} KWh</el-form-item>
-        <el-form-item label="当日辐照量：">{{ editForm.radiation }} kWh/㎡</el-form-item>
-        <el-form-item label="发电效率：">{{ editForm.powerRatio }} %</el-form-item>
-        <el-form-item label="总结：">{{ editForm.summary }}</el-form-item>
+        <el-form-item label="日报日期：" prop="reportDate">
+          {{ editForm.reportDate }}
+        </el-form-item>
+        <el-form-item label="天气：" prop="weather">
+          {{ editForm.weather }}
+        </el-form-item>
+        <el-form-item label="当日发电量：" prop="kwh">
+          {{ editForm.kwh }}
+        </el-form-item>
+        <el-form-item label="当日辐照量：" prop="radiation">
+          {{ editForm.radiation }}
+        </el-form-item>
+        <el-form-item label="发电效率：" prop="powerRatio">
+          {{ editForm.powerRatio }}
+        </el-form-item>
+        <el-form-item label="总结：" prop="summary">
+          {{ editForm.summary }}
+        </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="closeDetailDialog">确 定</el-button>
@@ -138,11 +150,10 @@ export default {
     this.getDataList()
   },
   methods: {
-    search () {
-      this.searchForm.page = 1
-      this.getDataList()
-    },
-    getDataList () {
+    getDataList (searchType) {
+      if (searchType === 0) {
+        this.searchForm.page = 1
+      }
       this.loading = true
       this.searchForm.start = ''
       this.searchForm.end = ''
@@ -156,7 +167,7 @@ export default {
           this.dataList = data.resultValue.list || []
           this.searchForm.limit = Number(data.resultValue.limit) || this.searchForm.limit
           this.searchForm.total = Number(data.resultValue.total) || 0
-          if (data.resultValue.page) {
+          if (data.resultValue.page != null) {
             this.searchForm.page = Number(data.resultValue.page)
           }
         } else {

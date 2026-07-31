@@ -3,7 +3,7 @@ import request from '../../utils/request'
 const baseUrl = (process.env.NODE_ENV === 'development' ? '/api' : '') + '/powerDataReport'
 
 /**
- * 电站运行日报分页查询
+ * 电站运行日报查询
  */
 export function getDayReportPage (data) {
   return request({
