@@ -17,6 +17,16 @@
 
 ## 已完成
 
+### 运维管理
+- 巡检点/计划/实施/工单：见 `docs/INSPECTION_OPS.md`，SQL `docs/sql/inspection_ops.sql`
+
+### 其余业务页（本轮补齐）
+- 修复损坏 router/ModuleScaffold 语法，保证 `require.context` 可加载
+- 基础数据（省字典）、设备列表、实时监控、数据分析入口、异常检索、经验库、权限用户列表
+- `POST /data/exceptionPage`、`/experience/*`、`GET /user/list`
+- SQL：`docs/sql/experience_fault.sql`
+
+
 ### 报表管理 / 运行日报（本迭代）
 
 - 表：`power_data_report`（`docs/sql/power_data_report.sql`）

@@ -1,8 +1,8 @@
 export default {
   router: [{
-    path: ,
-    component: resolve => require([@/views/], resolve),
-    name: ,
-    meta: { title:  }
+    path: '/data-search',
+    component: resolve => require(['@/views/DataSearch/Index'], resolve),
+    name: 'dataSearch',
+    meta: { title: '异常检索' }
   }]
 }

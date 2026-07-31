@@ -29,7 +29,7 @@ export const modules = [
     group: "基础",
     component: "BaseData/Index",
     routerFile: "baseData.js",
-    status: "todo",
+    status: "ready",
     owner: "前端-B / 后端-B",
     desc: "省市区、字典、厂商等基础资料维护",
     apis: [
@@ -101,7 +101,7 @@ export const modules = [
     group: "业务",
     component: "Device/Index",
     routerFile: "device.js",
-    status: "todo",
+    status: "ready",
     owner: "前端-B / 后端-A",
     desc: "逆变器、汇流箱、电表、直流柜等设备",
     apis: [
@@ -118,7 +118,7 @@ export const modules = [
     group: "数据",
     component: "DataMonitoring/Index",
     routerFile: "dataMonitoring.js",
-    status: "todo",
+    status: "ready",
     owner: "前端-C / 大数据",
     desc: "设备实时数据、功率曲线（HBase/Redis）",
     apis: [
@@ -129,12 +129,12 @@ export const modules = [
   {
     id: 6,
     name: "数据分析",
-    path: "/data-analysis",
+    path: "/dataAnalysis/stationKWhStatistics",
     icon: "el-icon-data-analysis",
     group: "数据",
     component: "DataAnalysis/Index",
     routerFile: "dataAnalysis.js",
-    status: "todo",
+    status: "ready",
     owner: "前端-C / Spark",
     desc: "统计报表、对比分析",
     apis: [
@@ -150,7 +150,7 @@ export const modules = [
     group: "数据",
     component: "DataSearch/Index",
     routerFile: "dataSearch.js",
-    status: "todo",
+    status: "ready",
     owner: "前端-B / ES",
     desc: "故障、异常、损失电量查询（ES）",
     apis: [
@@ -226,7 +226,7 @@ export const modules = [
     group: "运维",
     component: "Experience/Index",
     routerFile: "experience.js",
-    status: "todo",
+    status: "ready",
     owner: "前端-B",
     desc: "运维经验沉淀与检索",
     apis: [
@@ -260,7 +260,7 @@ export const modules = [
     group: "系统",
     component: "Authority/Index",
     routerFile: "authority.js",
-    status: "todo",
+    status: "ready",
     owner: "前端-A / 后端-A",
     desc: "用户、角色、菜单权限",
     apis: [

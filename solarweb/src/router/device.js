@@ -1,8 +1,8 @@
 export default {
   router: [{
-    path: ,
-    component: resolve => require([@/views/], resolve),
-    name: ,
-    meta: { title:  }
+    path: '/device',
+    component: resolve => require(['@/views/Device/Index'], resolve),
+    name: 'device',
+    meta: { title: '设备管理' }
   }]
 }

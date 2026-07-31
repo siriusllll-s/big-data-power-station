@@ -24,6 +24,24 @@ public class UserController {
 
 	private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+	
+	@GetMapping("/list")
+	public WrappedResult listUsers() {
+		java.util.List<SysUser> users = userMapper.selectList(
+				new com.baomidou.mybatisplus.core.conditions.query.QueryWrapper<SysUser>().eq("del_flag", 0));
+		java.util.List<java.util.Map<String, Object>> list = new java.util.ArrayList<>();
+		for (SysUser u : users) {
+			java.util.Map<String, Object> m = new java.util.HashMap<>();
+			m.put("id", u.getId());
+			m.put("name", u.getName());
+			m.put("trueName", u.getTrueName());
+			m.put("phone", u.getPhone());
+			m.put("eMail", u.getEMail());
+			list.add(m);
+		}
+		return WrappedResult.successWrappedResult(list);
+	}
+
 	@PostMapping("/changePassword")
 	public WrappedResult changePassword(@RequestBody Map<String, String> body, HttpServletRequest request) {
 		Integer userId = LoginUtil.getUserId(request);

@@ -1,8 +1,8 @@
 export default {
   router: [{
-    path: ,
-    component: resolve => require([@/views/], resolve),
-    name: ,
-    meta: { title:  }
+    path: '/team-board',
+    component: resolve => require(['@/views/Team/Board'], resolve),
+    name: 'teamBoard',
+    meta: { title: '接口协作台' }
   }]
 }

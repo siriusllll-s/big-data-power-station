@@ -62,7 +62,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/inspection/**",
 						"/inspectionPlan/**",
 						"/inspectionPoint/**",
-						"/device/**"
+						"/device/**",
+						"/user/**",
+						"/experience/**",
+						"/data/**"
 				).permitAll()
 				.anyRequest().authenticated();
 		http.headers().cacheControl();
