@@ -17,6 +17,13 @@
 
 ## 已完成
 
+### 数据监控（阈值 + 实时）
+- 阈值：`/threshold/*`，表 `threshold`，SQL `docs/sql/data_monitoring.sql`
+- 监控：`/monitor/historyData|stationPower|inverter|combinerBox|meter`
+- 前端：`DataMonitoring/{Threshold,AddThreshold,HistoryData,StationPower,Inverter,CombinerBox,Meter}.vue`
+- 路由：`/dataMonitoring/*`
+
+
 ### 设备管理
 - 厂商/设备 CRUD：`/factory`、`/device`，SQL `docs/sql/device_management.sql`
 - 页面：`DeviceList.vue`、`VendorList.vue`；工单设备列表优先读库
