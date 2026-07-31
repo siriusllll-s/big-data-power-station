@@ -60,6 +60,17 @@ datagenerate → logs/*.log → Flume → Kafka
 mysql -h slave2 -uroot -p123456 photovoltaic < docs/sql/station_management.sql
 ```
 
+## 运维管理
+
+| 功能 | 路由 | 说明 |
+|------|------|------|
+| 巡检点 | `/inspection/point` | 增删改查 |
+| 巡检计划 | `/inspection/plan` | 计划 + 生成进度 |
+| 巡检实施 | `/inspection/implement` | 日历展示 |
+| 工单 | `/workOrder` | 新建/处理/关闭 |
+
+建表：`docs/sql/inspection_ops.sql`
+
 ## 报表管理（运行日报）
 
 | 功能 | 说明 |

@@ -57,7 +57,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/statistics/**",
 						"/dictionary/**",
 						"/minio/**",
-						"/powerDataReport/**"
+						"/powerDataReport/**",
+						"/workerOrder/**",
+						"/inspection/**",
+						"/inspectionPlan/**",
+						"/inspectionPoint/**",
+						"/device/**"
 				).permitAll()
 				.anyRequest().authenticated();
 		http.headers().cacheControl();

@@ -1,10 +1,8 @@
 <template>
-  <module-scaffold module-path="/inspection" />
+  <div class="inspection-index">
+    <router-view />
+  </div>
 </template>
 <script>
-import ModuleScaffold from @/views/common/ModuleScaffold
-export default {
-  name: ,
-  components: { ModuleScaffold }
-}
+export default { name: 'InspectionIndex' }
 </script>

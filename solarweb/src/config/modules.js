@@ -160,19 +160,62 @@ export const modules = [
   },
   {
     id: 8,
-    name: "巡检运维",
-    path: "/inspection",
+    name: "巡检点",
+    path: "/inspection/point",
     icon: "el-icon-s-check",
     group: "运维",
-    component: "Inspection/Index",
+    component: "Inspection/InspectionPoint",
     routerFile: "inspection.js",
-    status: "todo",
+    status: "ready",
     owner: "前端-A / 后端-B",
-    desc: "巡检计划、工单、故障处理",
+    desc: "巡检点管理",
     apis: [
-      { method: "GET", url: "/api/inspection/plan", desc: "巡检计划" },
-      { method: "GET", url: "/api/work-order/list", desc: "工单列表" },
-      { method: "POST", url: "/api/work-order", desc: "创建工单" }
+      { method: "POST", url: "/api/inspectionPoint/point/pageByParam", desc: "巡检点分页" }
+    ]
+  },
+  {
+    id: 81,
+    name: "巡检计划",
+    path: "/inspection/plan",
+    icon: "el-icon-date",
+    group: "运维",
+    component: "Inspection/InspectionPlan",
+    routerFile: "inspection.js",
+    status: "ready",
+    owner: "前端-A / 后端-B",
+    desc: "巡检计划管理",
+    apis: [
+      { method: "POST", url: "/api/inspectionPlan/pageByParam", desc: "计划分页" }
+    ]
+  },
+  {
+    id: 82,
+    name: "巡检实施",
+    path: "/inspection/implement",
+    icon: "el-icon-s-claim",
+    group: "运维",
+    component: "Inspection/Implement",
+    routerFile: "inspection.js",
+    status: "ready",
+    owner: "前端-A / 后端-B",
+    desc: "日历查看巡检进度",
+    apis: [
+      { method: "GET", url: "/api/inspection/manageList", desc: "巡检进度" }
+    ]
+  },
+  {
+    id: 83,
+    name: "工单管理",
+    path: "/workOrder",
+    icon: "el-icon-s-order",
+    group: "运维",
+    component: "Inspection/workOrder",
+    routerFile: "inspection.js",
+    status: "ready",
+    owner: "前端-A / 后端-B",
+    desc: "故障工单流程",
+    apis: [
+      { method: "POST", url: "/api/workerOrder/pageByParam", desc: "工单分页" }
     ]
   },
   {
