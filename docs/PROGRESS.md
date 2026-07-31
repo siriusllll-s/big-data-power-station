@@ -17,6 +17,11 @@
 
 ## 已完成
 
+### 设备管理
+- 厂商/设备 CRUD：`/factory`、`/device`，SQL `docs/sql/device_management.sql`
+- 页面：`DeviceList.vue`、`VendorList.vue`；工单设备列表优先读库
+
+
 ### 运维管理
 - 巡检点/计划/实施/工单：见 `docs/INSPECTION_OPS.md`，SQL `docs/sql/inspection_ops.sql`
 

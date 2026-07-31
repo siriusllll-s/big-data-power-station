@@ -95,19 +95,34 @@ export const modules = [
   },
   {
     id: 4,
-    name: "设备管理",
+    name: "设备信息",
     path: "/device",
     icon: "el-icon-cpu",
     group: "业务",
-    component: "Device/Index",
+    component: "Device/DeviceList",
     routerFile: "device.js",
     status: "ready",
     owner: "前端-B / 后端-A",
-    desc: "逆变器、汇流箱、电表、直流柜等设备",
+    desc: "设备基本信息增删改查",
     apis: [
-      { method: "GET", url: "/api/device/list", desc: "设备列表" },
-      { method: "GET", url: "/api/device/{id}", desc: "设备详情" },
-      { method: "POST", url: "/api/device", desc: "新增设备" }
+      { method: "POST", url: "/api/device/pageByParam", desc: "设备分页" },
+      { method: "POST", url: "/api/device/save", desc: "设备保存" }
+    ]
+  },
+  {
+    id: 41,
+    name: "设备厂商",
+    path: "/factory",
+    icon: "el-icon-office-building",
+    group: "业务",
+    component: "Device/VendorList",
+    routerFile: "device.js",
+    status: "ready",
+    owner: "前端-B / 后端-A",
+    desc: "设备厂商增删改查",
+    apis: [
+      { method: "POST", url: "/api/factory/pageByParam", desc: "厂商分页" },
+      { method: "GET", url: "/api/factory/factoryList", desc: "厂商下拉" }
     ]
   },
   {

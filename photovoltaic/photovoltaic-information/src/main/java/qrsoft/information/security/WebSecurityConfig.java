@@ -63,6 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/inspectionPlan/**",
 						"/inspectionPoint/**",
 						"/device/**",
+						"/factory/**",
 						"/user/**",
 						"/experience/**",
 						"/data/**"
