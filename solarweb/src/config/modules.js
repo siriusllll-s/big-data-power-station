@@ -44,16 +44,53 @@ export const modules = [
     path: "/station",
     icon: "el-icon-office-building",
     group: "业务",
-    component: "Station/Index",
+    component: "Station/Station",
     routerFile: "station.js",
-    status: "todo",
+    status: "ready",
     owner: "前端-A / 后端-A",
-    desc: "电站档案、合同、电价等",
+    desc: "电站档案、电价 CRUD、合同计划电量",
     apis: [
-      { method: "GET", url: "/api/station/list", desc: "电站分页列表" },
-      { method: "GET", url: "/api/station/{id}", desc: "电站详情" },
-      { method: "POST", url: "/api/station", desc: "新增电站" },
-      { method: "PUT", url: "/api/station/{id}", desc: "更新电站" }
+      { method: "GET", url: "/api/station/detail/{id}", desc: "电站详情" },
+      { method: "POST", url: "/api/station/save", desc: "电站保存" },
+      { method: "POST", url: "/api/station/savePhoto", desc: "电站图片" },
+      { method: "POST", url: "/api/stationSolarPrice/pageByParam", desc: "电价分页" },
+      { method: "POST", url: "/api/stationSolarPrice/save", desc: "电价保存" },
+      { method: "GET", url: "/api/stationSolarPrice/delete/{id}", desc: "电价删除" },
+      { method: "POST", url: "/api/stationContract/pageByParam", desc: "合同分页" },
+      { method: "POST", url: "/api/stationContract/save", desc: "合同保存" },
+      { method: "GET", url: "/api/stationContract/delete/{id}", desc: "合同删除" }
+    ]
+  },
+  {
+    id: 31,
+    name: "电价管理",
+    path: "/price",
+    icon: "el-icon-coin",
+    group: "业务",
+    component: "Station/Price",
+    routerFile: "price.js",
+    status: "ready",
+    owner: "前端-A / 后端-A",
+    desc: "电站电价增删改查",
+    apis: [
+      { method: "POST", url: "/api/stationSolarPrice/pageByParam", desc: "电价分页" },
+      { method: "POST", url: "/api/stationSolarPrice/save", desc: "电价保存" }
+    ]
+  },
+  {
+    id: 32,
+    name: "合同管理",
+    path: "/contract",
+    icon: "el-icon-document-checked",
+    group: "业务",
+    component: "Station/Contract",
+    routerFile: "contract.js",
+    status: "ready",
+    owner: "前端-A / 后端-A",
+    desc: "合同计划电量与效能参数",
+    apis: [
+      { method: "POST", url: "/api/stationContract/pageByParam", desc: "合同分页" },
+      { method: "POST", url: "/api/stationContract/save", desc: "合同保存" }
     ]
   },
   {

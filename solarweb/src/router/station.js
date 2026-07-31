@@ -1,8 +1,11 @@
 export default {
-  router: [{
-    path: ,
-    component: resolve => require([@/views/], resolve),
-    name: ,
-    meta: { title:  }
-  }]
+    router: [{
+      path: "/station",
+      component: resolve => require(['@/views/Station/Station'], resolve),
+      name: "station",
+      meta: {
+        title: "电站信息"
+      }
+    },
+    ]
 }

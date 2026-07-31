@@ -1,6 +1,0 @@
-import './request'
-import './main'
-import './directive'
-import './permission'
-import './array'
-import './date'

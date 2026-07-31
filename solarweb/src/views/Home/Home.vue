@@ -21,9 +21,7 @@
         </el-card>
       </el-col>
       <el-col :span="8">
-        <el-card shadow="never" class="chart-card">
-          <div ref="echarts1" class="echarts-box"></div>
-        </el-card>
+        <HomeRight />
       </el-col>
     </el-row>
 
@@ -54,6 +52,8 @@
         </el-table-column>
       </el-table>
     </el-card>
+
+    <HomeFault />
   </div>
 </template>
 
@@ -62,10 +62,12 @@ import { getAmmeterData, getStationMonthPower } from '@/api/Home/Home'
 import { getStationDetail } from '@/api/Station/Station'
 import HomeLeft from '@/views/Home/Left'
 import HomeCentre from '@/views/Home/Centre'
+import HomeRight from '@/views/Home/Right'
+import HomeFault from '@/views/Home/Fault'
 
 export default {
   name: 'Home',
-  components: { HomeLeft, HomeCentre },
+  components: { HomeLeft, HomeCentre, HomeRight, HomeFault },
   data () {
     return {
       loading: false,

@@ -62,11 +62,19 @@ public class StationServiceImpl implements IStationService {
 	@Override
 	@Transactional
 	public void savePhoto(StationPhotoInput input) {
-		Station station = stationMapper.selectById(input.getStation());
+		Integer stationId = input == null ? null : input.resolveStationId();
+		String photo = input == null ? null : input.resolvePhoto();
+		if (stationId == null) {
+			throw new RuntimeException("电站 id 不能为空");
+		}
+		if (photo == null || photo.isEmpty()) {
+			throw new RuntimeException("图片路径不能为空");
+		}
+		Station station = stationMapper.selectById(stationId);
 		if (station == null) {
 			throw new RuntimeException("电站信息不存在或已删除");
 		}
-		station.setPhotoPath(input.getPhoto());
+		station.setPhotoPath(photo);
 		int i = stationMapper.updateById(station);
 		if (i != 1) {
 			throw new RuntimeException("图片信息保存失败");

@@ -47,7 +47,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.authorizeRequests()
-				.antMatchers("/login", "/register", "/screen/**", "/station/**", "/statistics/**").permitAll()
+				// 实验联调：大屏/电站管理/电价合同/字典/上传放行；生产请收紧
+				.antMatchers(
+						"/login", "/register",
+						"/screen/**",
+						"/station/**",
+						"/stationSolarPrice/**",
+						"/stationContract/**",
+						"/statistics/**",
+						"/dictionary/**",
+						"/minio/**"
+				).permitAll()
 				.anyRequest().authenticated();
 		http.headers().cacheControl();
 		http.addFilterBefore(new TokenLoginFilter("/login", authenticationManager(), redisTemplate, authMapper), UsernamePasswordAuthenticationFilter.class)

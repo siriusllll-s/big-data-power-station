@@ -1,34 +1,42 @@
 光伏大数据项目 — 使用说明（速查）
 
-【工程位置】
-  桌面 Git：/root/Desktop/光伏项目框架
-  后端安装：/opt/module/photovoltaic
-  前端安装：/home/webspace/solarweb
-  运行 jar：/opt/module/photovoltaic/information/photovoltaic-information-0.0.1-SNAPSHOT.jar
-
-【目录】
-  photovoltaic/   后端（common / datagenerate / information / spark / sparkrdd）
+【仓库结构】（根目录即为工程，无嵌套 big-data-power-station-main）
+  photovoltaic/   后端 common / datagenerate / information / spark / sparkrdd
   solarweb/       前端 Vue2
   demo/           演示
-  deploy/         部署
-  big-data-notes/ 说明
+  deploy/         云部署
   docs/PROGRESS.md 功能进度
+  docs/sql/       建表脚本
 
 【常用命令】
+  # 建电价/合同表
+  mysql -h slave2 -uroot -p123456 photovoltaic < docs/sql/station_management.sql
+
   # 构建 information
-  cd /root/Desktop/光伏项目框架/photovoltaic
+  cd photovoltaic
   mvn -DskipTests clean package -pl photovoltaic-common,photovoltaic-information -am
 
-  # 启动后端（master）
-  cd /opt/module/photovoltaic/information
-  nohup java -jar photovoltaic-information-0.0.1-SNAPSHOT.jar >> run.log 2>&1 &
+  # 启动后端
+  java -jar photovoltaic-information/target/photovoltaic-information-0.0.1-SNAPSHOT.jar
 
   # 启动前端
-  cd /home/webspace/solarweb && npm run serve   # :8080
+  cd solarweb && npm run serve   # :8080
 
-【接口】
-  POST http://master:8113/screen/ammeter          电表读数
-  GET  http://master:8113/screen/stationMonthPower 本月发电量/效率
+【电站管理接口】
+  GET  /station/detail/1
+  POST /station/save
+  POST /station/savePhoto
+  POST /stationSolarPrice/pageByParam | /save | GET /detail/{id} | GET /delete/{id}
+  POST /stationContract/pageByParam   | /save | GET /detail/{id} | GET /delete/{id}
+  GET  /dictionary/province | /city/{id} | /area/{id}
+  POST /minio/upload
+
+【大屏接口】
+  POST /screen/ammeter
+  GET  /screen/stationMonthPower
+  GET  /screen/stationLastThirtyDayPower/1
+  GET  /screen/stationMonthKWhStatistic/1
+  GET  /screen/stationFaultCount/1
 
 【依赖服务】
   MySQL slave2:3306  root/123456  库 photovoltaic
@@ -39,7 +47,3 @@
 【节点】
   master 172.18.4.59 | slave1 172.18.4.144 | slave2 172.18.4.70
   client1 172.18.4.236 | client2 172.18.4.52 | client3 172.18.4.80
-
-【同步】
-  源码/jar/Home 前端已同步到 client1/2/3（2026-07-27）
-  详细见 README.md

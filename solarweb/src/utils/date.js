@@ -39,3 +39,16 @@ export function compareGTOneMonth (start, end) {
   const diff = (e.getTime() - s.getTime()) / (24 * 3600 * 1000)
   return diff > 31
 }
+
+/** 获取当前时区起始（本月第一天零点） */
+export function getCurrentTimeZone () {
+  const d = new Date()
+  d.setDate(1)
+  d.setHours(0, 0, 0, 0)
+  return formatDate(d, 'yyyy-MM-dd HH:mm:ss')
+}
+
+/** 获取当前时间 */
+export function getCurrentTime () {
+  return formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss')
+}

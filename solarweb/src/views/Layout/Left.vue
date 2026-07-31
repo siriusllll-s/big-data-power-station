@@ -17,19 +17,19 @@
   </div>
 </template>
 <script>
-import { modulesToMenu } from @/config/modules
+import { modulesToMenu } from '@/config/modules'
 export default {
-  name: Left,
+  name: 'Left',
   data () {
     return { userMenu: [] }
   },
   computed: {
     isMenuCollapsed () {
-      return this.$store.getters[menu/isMenuCollapsed]
+      return this.$store.getters['menu/isMenuCollapsed']
     }
   },
   mounted () {
-    const saved = localStorage.getItem(userMenu)
+    const saved = localStorage.getItem('userMenu')
     if (saved) {
       try {
         this.userMenu = JSON.parse(saved)
@@ -38,7 +38,7 @@ export default {
       }
     } else {
       this.userMenu = modulesToMenu()
-      localStorage.setItem(userMenu, JSON.stringify(this.userMenu))
+      localStorage.setItem('userMenu', JSON.stringify(this.userMenu))
     }
   }
 }
