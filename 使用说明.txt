@@ -1,28 +1,45 @@
 光伏大数据项目 — 使用说明（速查）
+更新：2026-08-01
+
+【文档】
+  docs/PROGRESS.md       功能进度
+  docs/ARCHITECTURE.md   后端分包 + RealtimeDataPort
+  docs/DEVICE_MGMT.md    设备/厂商
+  docs/INSPECTION_OPS.md 巡检/工单
+  docs/REPORT_CHECKLIST.md 运行日报
+  docs/sql/              全部建表脚本
+  README.md              总览
 
 【仓库结构】（根目录即为工程，无嵌套 big-data-power-station-main）
-  photovoltaic/   后端 common / datagenerate / information / spark / sparkrdd
-  solarweb/       前端 Vue2
-  demo/           演示
+  photovoltaic/   common · datagenerate · information · spark · sparkrdd
+  solarweb/       Vue2 前端
   deploy/         云部署
-  docs/PROGRESS.md 功能进度
-  docs/sql/       建表脚本
+  docs/           文档与 SQL
 
-【常用命令】
-  # 建电价/合同表
+【information 包（Java，HTTP 不变）】
+  station / ops / monitor / report / device / identity / query
+  shared / infrastructure · dto · mapper
+  监控实时：monitor.port.RealtimeDataPort
+            → adapter.DeviceTableRealtimeDataAdapter
+
+【建表（按需全量）】
   mysql -h slave2 -uroot -p123456 photovoltaic < docs/sql/station_management.sql
+  mysql -h slave2 -uroot -p123456 photovoltaic < docs/sql/power_data_report.sql
+  mysql -h slave2 -uroot -p123456 photovoltaic < docs/sql/inspection_ops.sql
+  mysql -h slave2 -uroot -p123456 photovoltaic < docs/sql/device_management.sql
+  mysql -h slave2 -uroot -p123456 photovoltaic < docs/sql/data_monitoring.sql
+  mysql -h slave2 -uroot -p123456 photovoltaic < docs/sql/experience_fault.sql
 
-  # 构建 information
+【启动】
   cd photovoltaic
   mvn -DskipTests clean package -pl photovoltaic-common,photovoltaic-information -am
-
-  # 启动后端
   java -jar photovoltaic-information/target/photovoltaic-information-0.0.1-SNAPSHOT.jar
+  # → :8113
 
-  # 启动前端
-  cd solarweb && npm run serve   # :8080
+  cd solarweb && npm run serve
+  # → :8080  /api 代理到后端
 
-【电站管理接口】
+【电站】
   GET  /station/detail/1
   POST /station/save
   POST /station/savePhoto
@@ -31,12 +48,45 @@
   GET  /dictionary/province | /city/{id} | /area/{id}
   POST /minio/upload
 
-【大屏接口】
+【大屏 /screen】
   POST /screen/ammeter
   GET  /screen/stationMonthPower
   GET  /screen/stationLastThirtyDayPower/1
   GET  /screen/stationMonthKWhStatistic/1
   GET  /screen/stationFaultCount/1
+  GET  /screen/stationDayAndYearPower/1
+  GET  /screen/weather
+
+【运行日报】
+  页面：/report/dayReport
+  POST /powerDataReport/pageByParam
+  GET  /powerDataReport/detail/{id}
+  POST /powerDataReport/update
+  定时：每天 00:10 昨日；启动补近 30 天
+
+【设备】
+  页面：/device · /factory
+  POST /device/pageByParam | /save | GET /detail/{id} | GET /delete/{id}
+  GET  /device/deviceByType/{type} | /deviceList | /listByType/{type}
+  POST /factory/pageByParam | /save | GET /factoryList | /detail/{id} | /delete/{id}
+
+【运维】
+  页面：/inspection/point · /plan · /implement · /workOrder
+  巡检点 /inspectionPoint/point/*
+  计划   /inspectionPlan/*
+  进度   GET /inspection/manageList
+  工单   /workerOrder/*
+
+【数据监控】
+  页面：/dataMonitoring/threshold | historyData | stationPower | inverter | combinerBox | meter
+  POST /threshold/pageByParam | /save | GET /detail/{id}
+  POST /monitor/historyData | /stationPower
+  GET  /monitor/inverter | /combinerBox | /meter
+
+【其他】
+  POST /data/exceptionPage
+  POST /experience/pageByParam | /save | GET /delete/{id}
+  GET  /user/list
 
 【依赖服务】
   MySQL slave2:3306  root/123456  库 photovoltaic
@@ -47,11 +97,3 @@
 【节点】
   master 172.18.4.59 | slave1 172.18.4.144 | slave2 172.18.4.70
   client1 172.18.4.236 | client2 172.18.4.52 | client3 172.18.4.80
-
-【运行日报】
-  建表：mysql ... < docs/sql/power_data_report.sql
-  页面：/report/dayReport
-  POST /powerDataReport/pageByParam
-  GET  /powerDataReport/detail/{id}
-  POST /powerDataReport/update
-  定时：每天 00:10 生成昨日；启动补近 30 天

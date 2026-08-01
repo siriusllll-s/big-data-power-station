@@ -98,3 +98,9 @@ git push -u origin main
 - Git: 已 init，分支 main
 - 远程: git@github.com:siriusllll-s/big-data.git
 - 首次提交: first commit: photovoltaic framework
+
+## 文档
+
+- 功能进度：`docs/PROGRESS.md`
+- 后端架构：`docs/ARCHITECTURE.md`
+- 使用说明：`使用说明.txt`
