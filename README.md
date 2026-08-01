@@ -2,6 +2,10 @@
 
 电站大数据实验项目：模拟采集 → Flume/Kafka → Spark → ES/HBase/MySQL → Spring Boot API → Vue2 大屏/业务前端。
 
+## 后端分包
+
+见 `docs/ARCHITECTURE.md`（station/ops/monitor 等业务上下文 + RealtimeDataPort）。
+
 ## 仓库结构
 
 ```
